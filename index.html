@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Blocks</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 900px;
+            margin: 20px;
+        }
+
+        .block {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            width: 400px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .block h2 {
+            color: #333;
+        }
+
+        .block button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .block button:hover {
+            background-color: #0056b3;
+        }
+
+        .block input[type="number"],
+        .block input[type="text"],
+        .block input[type="email"] {
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: red;
+            margin: 10px auto;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #calculator {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+        }
+
+        #calculator button {
+            padding: 10px;
+            border: none;
+            background-color: #6c757d;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #calculator button:hover {
+            background-color: #5a6268;
+        }
+
+        #calculator input {
+            grid-column: 1 / span 4;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Alert Button -->
+        <div class="block">
+            <h2>Alert Button</h2>
+            <button onclick="showAlert()">Show Alert</button>
+        </div>
+
+        <!-- Addition -->
+        <div class="block">
+            <h2>Addition</h2>
+            <input type="number" id="num1" placeholder="Number 1">
+            <input type="number" id="num2" placeholder="Number 2">
+            <button onclick="addNumbers()">Add</button>
+            <p id="additionResult"></p>
+        </div>
+
+        <!-- Multiplication -->
+        <div class="block">
+            <h2>Multiplication</h2>
+            <input type="number" id="multNum1" placeholder="Number 1">
+            <input type="number" id="multNum2" placeholder="Number 2">
+            <button onclick="multiplyNumbers()">Multiply</button>
+            <p id="multiplicationResult"></p>
+        </div>
+
+        <!-- Check Even and Odd -->
+        <div class="block">
+            <h2>Check Even and Odd</h2>
+            <input type="number" id="evenOddNum" placeholder="Enter a number">
+            <button onclick="checkEvenOdd()">Check</button>
+            <p id="evenOddResult"></p>
+        </div>
+
+        <!-- Check Legal Age to Vote -->
+        <div class="block">
+            <h2>Check Legal Age to Vote</h2>
+            <input type="number" id="age" placeholder="Enter your age">
+            <button onclick="checkAgeToVote()">Check</button>
+            <p id="voteResult"></p>
+        </div>
+
+        <!-- Print Prime Numbers -->
+        <div class="block">
+            <h2>Print Prime Numbers</h2>
+            <input type="number" id="primeLimit" placeholder="Enter limit">
+            <button onclick="printPrimeNumbers()">Print Primes</button>
+            <p id="primeResult"></p>
+        </div>
+
+        <!-- Form -->
+        <div class="block">
+            <h2>Form</h2>
+            <input type="text" id="name" placeholder="Name">
+            <input type="email" id="email" placeholder="Email">
+            <input type="number" id="contact" placeholder="Contact">
+            <input type="number" id="rollNo" placeholder="Roll No">
+            <button onclick="submitForm()">Submit</button>
+            <p id="formResult"></p>
+        </div>
+
+        <!-- Circle Color Changer -->
+        <div class="block">
+            <h2>Circle Color Changer</h2>
+            <div class="circle" onclick="changeCircleColor(this)"></div>
+        </div>
+
+        <!-- Grade Calculator -->
+        <div class="block">
+            <h2>Grade Calculator</h2>
+            <input type="number" id="marks" placeholder="Enter marks">
+            <button onclick="calculateGrade()">Calculate Grade</button>
+            <p id="gradeResult"></p>
+        </div>
+
+        <!-- Click Counters -->
+        <div class="block">
+            <h2>Click Counters</h2>
+            <button id="clickButton">Click Me</button>
+            <p id="clickCount">Clicks: 0</p>
+            <p id="doubleClickCount">Double Clicks: 0</p>
+            <p id="hoverCount">Mouse Hovers: 0</p>
+        </div>
+
+        <!-- Color Mixer -->
+        <div class="block">
+            <h2>Color Mixer</h2>
+            <input type="color" id="color1" value="#ff0000">
+            <input type="color" id="color2" value="#0000ff">
+            <button onclick="mixColors()">Mix Colors</button>
+            <div id="mixedColor" style="width: 50px; height: 50px; margin: 10px auto;"></div>
+        </div>
+
+        <!-- Simple Calculator -->
+        <div class="block">
+            <h2>Simple Calculator</h2>
+            <input type="text" id="calcDisplay" value="0">
+            <div id="calculator">
+                <button onclick="calcAppend('7')">7</button>
+                <button onclick="calcAppend('8')">8</button>
+                <button onclick="calcAppend('9')">9</button>
+                <button onclick="calcOperation('/')">/</button>
+                <button onclick="calcAppend('4')">4</button>
+                <button onclick="calcAppend('5')">5</button>
+                <button onclick="calcAppend('6')">6</button>
+                <button onclick="calcOperation('*')">*</button>
+                <button onclick="calcAppend('1')">1</button>
+                <button onclick="calcAppend('2')">2</button>
+                <button onclick="calcAppend('3')">3</button>
+                <button onclick="calcOperation('-')">-</button>
+                <button onclick="calcAppend('0')">0</button>
+                <button onclick="calcAppend('.')">.</button>
+                <button onclick="calcCalculate()">=</button>
+                <button onclick="calcOperation('+')">+</button>
+                <button onclick="calcClear()">Clear</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Alert Button
+        function showAlert() {
+            alert("Hello, this is an alert!");
+        }
+
+        // Addition
+        function addNumbers() {
+            var num1 = parseFloat(document.getElementById("num1").value);
+            var num2 = parseFloat(document.getElementById("num2").value);
+            document.getElementById("additionResult").innerText = "Result: " + (num1 + num2);
+        }
+
+        // Multiplication
+        function multiplyNumbers() {
+            var num1 = parseFloat(document.getElementById("multNum1").value);
+            var num2 = parseFloat(document.getElementById("multNum2").value);
+            document.getElementById("multiplicationResult").innerText = "Result: " + (num1 * num2);
+        }
+
+        // Check Even and Odd
+        function checkEvenOdd() {
+            var num = parseInt(document.getElementById("evenOddNum").value);
+            document.getElementById("evenOddResult").innerText = num % 2 === 0 ? "Even" : "Odd";
+        }
+
+        // Check Legal Age to Vote
+        function checkAgeToVote() {
+            var age = parseInt(document.getElementById("age").value);
+            document.getElementById("voteResult").innerText = age >= 18 ? "Eligible to vote" : "Not eligible to vote";
+        }
+
+        // Print Prime Numbers
+        function printPrimeNumbers() {
+            var limit = parseInt(document.getElementById("primeLimit").value);
+            var primes = [];
+            for (let i = 2; i <= limit; i++) {
+                if (isPrime(i)) {
+                    primes.push(i);
+                }
+            }
+            document.getElementById("primeResult").innerText = "Primes: " + primes.join(", ");
+
+            function isPrime(num) {
+                for (let i = 2; i < num; i++) {
+                    if (num % i === 0) return false;
+                }
+                return num > 1;
+            }
+        }
+
+        // Form
+        function submitForm() {
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var contact = document.getElementById("contact").value;
+            var rollNo = document.getElementById("rollNo").value;
+            document.getElementById("formResult").innerText = `Name: ${name}, Email: ${email}, Contact: ${contact}, Roll No: ${rollNo}`;
+        }
+
+        // Circle Color Changer
+        function changeCircleColor(circle) {
+            const colors = ['red', 'green', 'blue'];
+            let currentColor = circle.style.backgroundColor;
+            let colorIndex = colors.indexOf(currentColor);
+            colorIndex = (colorIndex + 1) % colors.length;
+            circle.style.backgroundColor = colors[colorIndex];
+        }
+
+        // Grade Calculator
+        function calculateGrade() {
+            var marks = parseFloat(document.getElementById("marks").value);
+            let grade;
+            if (marks >= 90) grade = 'A';
+            else if (marks >= 80) grade = 'B';
+            else if (marks >= 70) grade = 'C';
+            else if (marks >= 60) grade = 'D';
+            else grade = 'F';
+            document.getElementById("gradeResult").innerText = "Grade: " + grade;
+        }
+
+        // Click Counters
+        let clickCount = 0;
+        let doubleClickCount = 0;
+        let hoverCount = 0;
+
+        const clickButton = document.getElementById("clickButton");
+        const clickCountDisplay = document.getElementById("clickCount");
+        const doubleClickCountDisplay = document.getElementById("doubleClickCount");
+        const hoverCountDisplay = document.getElementById("hoverCount");
+
+        clickButton.addEventListener("click", () => {
+            clickCount++;
+            clickCountDisplay.innerText = `Clicks: ${clickCount}`;
+        });
+
+        clickButton.addEventListener("dblclick", () => {
+            doubleClickCount++;
+            doubleClickCountDisplay.innerText = `Double Clicks: ${doubleClickCount}`;
+        });
+
+        clickButton.addEventListener("mouseover", () => {
+            hoverCount++;
+            hoverCountDisplay.innerText = `Mouse Hovers: ${hoverCount}`;
+        });
+
+        // Color Mixer
+        function mixColors() {
+            var color1 = document.getElementById("color1").value;
+            var color2 = document.getElementById("color2").value;
+            // Simple average of RGB values
+            let mixedColor = blendColors(color1, color2);
+            document.getElementById("mixedColor").style.backgroundColor = mixedColor;
+        }
+
+        function blendColors(c1, c2) {
+            let hexToRgb = (hex) => hex.slice(1).match(/.{2}/g).map(val => parseInt(val, 16));
+            let [r1, g1, b1] = hexToRgb(c1);
+            let [r2, g2, b2] = hexToRgb(c2);
+
+            let r = Math.round((r1 + r2) / 2);
+            let g = Math.round((g1 + g2) / 2);
+            let b = Math.round((b1 + b2) / 2);
+
+            return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+        }
+
+        // Simple Calculator
+        let displayValue = '0';
+
+        function calcAppend(value) {
+            if (displayValue === '0') {
+                displayValue = value;
+            } else {
+                displayValue += value;
+            }
+            updateDisplay();
+        }
+
+        function calcOperation(operator) {
+            displayValue += operator;
+            updateDisplay();
+        }
+
+        function calcCalculate() {
+            try {
+                displayValue = eval(displayValue);
+            } catch (e) {
+                displayValue = 'Error';
+            }
+            updateDisplay();
+        }
+
+        function calcClear() {
+            displayValue = '0';
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            document.getElementById("calcDisplay").value = displayValue;
+        }
+    </script>
+</body>
+</html>
